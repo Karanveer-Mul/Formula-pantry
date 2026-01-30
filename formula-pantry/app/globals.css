@@ -8,3 +8,23 @@
                hover:bg-gray-100 transition-all duration-100 ease-linear; 
     }
 }   
+
+@layer utilities {
+  @media (orientation: landscape) {
+    .orientation-layout {
+        top: calc(50% - 52.1875rem);
+        left: calc(50% - 90.625rem);
+        width: 173.75rem;
+        height: 112.188rem;
+    }
+  }
+
+  @media (orientation: portrait) {
+    .orientation-layout {
+        top: -7.5rem;
+        left: 0px;
+        width: 100%;
+        height: calc(100% + 7.5rem);
+    }
+  }
+}

@@ -10,7 +10,7 @@ const sideBarContext = createContext()
 export const NavbarStructure = ({children}) => {
     const [isExpanded, setIsExpanded] = useState(false); 
     return (
-        <aside className='absolute h-screen'>
+        <aside className='sticky top-0 h-screen'>
             <nav onMouseEnter={() => setIsExpanded(true)} onMouseLeave={() => setIsExpanded(false)} className='bg-white h-full flex flex-col border-r border-r-gray-300 shadow-sm'>
                 <div className='p-4 pb-2 h-10 mt-2 mb-4 ml-2 flex justify-between items-center relative overflow-visible'> 
                     <p className={`absolute top-0 left-0 text-black pb-4 overflow-hidden transition-all  duration-300 ease-in-out ${ isExpanded ? "font-bold text-lg leading-4" : "font-medium text-xs leading-3"}`}>

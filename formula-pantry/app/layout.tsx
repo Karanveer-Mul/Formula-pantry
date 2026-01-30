@@ -41,10 +41,10 @@ export default function RootLayout({
       <body className={`antialiased`}>
         <div className="relative w-full min-h-screen">
           <div className='relative w-full flex'>
-            <div className="shrink-0 top-0 sticky">
+            <div className="shrink-0">
               <Navbar />
             </div>
-            <div className="w-full flex-1 overflow-hidden">
+            <div className="w-full">
               {children}
             </div>
           </div>
