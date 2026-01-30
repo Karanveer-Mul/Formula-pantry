@@ -44,7 +44,9 @@ export default function RootLayout({
             <div className="shrink-0 top-0 sticky">
               <Navbar />
             </div>
-            {children}
+            <div className="w-full flex-1 overflow-hidden">
+              {children}
+            </div>
           </div>
         </div>
       </body>
