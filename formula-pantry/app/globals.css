@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@layer components {
+    .sidebar-icon {
+        @apply relative flex mx-2 py-2 wrap-normal justify-start items-center
+               text-gray-700 hover:text-black hover:border-l-black hover:border-l-4
+               hover:bg-gray-100 transition-all duration-100 ease-linear; 
+    }
+}   
