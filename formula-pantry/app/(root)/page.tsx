@@ -1,16 +1,16 @@
 export const Home = () => {
   return (
     <div className="relative isolate pt-14">
-      <div className="relative w-full">
+      <div className="relative px-6 lg:px-8 mx-auto max-w-4xl pb-32 sm:pb-48 lg:pb-56 overflow-hidden">
         <div className="absolute inset-0 top-10 overflow-hidden" aria-hidden="true">
           <div className="bg-[linear-gradient(180deg,#fffa00,#fffa00_10%,rgba(255,250,0,0)_85%)] pt-11">
-            <span className="text-center text-white tracking-tighter font-extrabold z-1 text-9xl block max-w-[100vw] whitespace-nowrap overflow-hidden">
+            <span className="text-left text-white tracking-tighter font-extrabold z-1 text-9xl block max-w-[100vw] whitespace-nowrap overflow-hidden">
               FORMULA ONE
             </span>
           </div>
           <div className="pointer-events-none overflow-hidden">
-            <span className="leading-48 block max-w-[100vw] whitespace-nowrap overflow-hidden text-[10rem] text-center font-extrabold tracking-tighter bg-[repeating-linear-gradient(135deg,#6a7282_0px,#6a7282_1px,transparent_1px,transparent_4px)] bg-clip-text text-transparent opacity-20">
-              SECTOR TALKS
+            <span className="leading-48 block max-w-[100vw] whitespace-nowrap overflow-hidden text-[10rem] text-center font-extrabold tracking-tighter bg-[repeating-linear-gradient(135deg,#6a7282_0px,#6a7282_1px,transparent_1px,transparent_4px)] bg-clip-text text-transparent opacity-15">
+              SECTORTALKS
             </span>
           </div>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, CircleChevronRight, CircleChevronLeft} from 'lucide-react';
+import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, CircleChevronRight, CircleChevronLeft, Menu} from 'lucide-react';
 import { useContext, useState } from 'react';
 import { createContext } from 'react';
 
@@ -9,14 +9,15 @@ const sideBarContext = createContext()
 
 export const NavbarStructure = ({children}) => {
     const [isExpanded, setIsExpanded] = useState(false); 
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
-        <aside className='sticky top-0 h-screen'>
-            <nav onMouseEnter={() => setIsExpanded(true)} onMouseLeave={() => setIsExpanded(false)} className='bg-white h-full flex flex-col border-r border-r-gray-300 shadow-sm'>
+        <aside className='hidden sticky top-0 lg:h-screen'>
+            <nav className='hidden bg-white h-full lg:flex flex-col border-r border-r-gray-300 shadow-sm' onMouseEnter={() => setIsExpanded(true)} onMouseLeave={() => setIsExpanded(false)} >
                 <div className='p-4 pb-2 h-10 mt-2 mb-4 ml-2 flex justify-between items-center relative overflow-visible'> 
                     <p className={`absolute top-0 left-0 text-black pb-4 overflow-hidden transition-all  duration-300 ease-in-out ${ isExpanded ? "font-bold text-lg leading-4" : "font-medium text-xs leading-3"}`}>
                         Sector<br/>Talks
                     </p>
-                    <button onClick={() => setIsExpanded(!isExpanded) } className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 p-1.5 cursor-pointer z-10'>
+                    <button onClick={() => setIsExpanded(!isExpanded) } className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 p-1.5 cursor-pointer z-100'>
                         { isExpanded ? <CircleChevronLeft size={18} /> : <CircleChevronRight size={18} /> }
                     </button>
                 </div>
@@ -69,19 +70,7 @@ export const NavbarItem = ({icon, text, active, alert}) => {
     )
 }
 
-
-const SideBarIcon = ({icon, link}) => {
-
-    const lowerLink = link.toLowerCase();
-
-    return (
-        <Link href={`/${lowerLink}`} className='sidebar-icon flex gap-2'>
-            {icon} {link}
-        </Link>
-    ); 
-}
-
-const Navbar = () => {
+const PCNavbar = () => {
         return (
             <NavbarStructure>
                 <NavbarItem icon={<House size={24}/>} text="Home" active={true} />
@@ -95,4 +84,4 @@ const Navbar = () => {
         )
 }
 
-export default Navbar;
+export default PCNavbar;

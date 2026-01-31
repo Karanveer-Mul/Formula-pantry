@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/PCNavbar";
+import PCNavbar from "../components/PCNavbar";
+import MobileNavbar from "@/components/MobileNavbar";
 
 const harmonySans = localFont({
   src: [
@@ -40,13 +42,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased`}>
         <div className="relative w-full min-h-screen">
-          <div className='relative w-full flex'>
-            <div className="shrink-0">
-              <Navbar />
-            </div>
-            <div className="w-full">
-              {children}
-            </div>
+          <div className='relative w-full flex flex-col lg:flex-row'>
+            <MobileNavbar />
+            
           </div>
         </div>
       </body>
