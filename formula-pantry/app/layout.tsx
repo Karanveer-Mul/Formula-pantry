@@ -44,6 +44,7 @@ export default function RootLayout({
         <div className="relative w-full min-h-screen">
           <div className='relative w-full flex flex-col lg:flex-row'>
             <MobileNavbar />
+            <PCNavbar />
             
           </div>
         </div>

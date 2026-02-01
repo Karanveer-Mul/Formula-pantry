@@ -1,17 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, ChevronRight, CircleChevronLeft, Menu, X} from 'lucide-react';
+import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, ChevronRight, CircleChevronLeft, Menu, X, Wrench} from 'lucide-react';
 import { useContext, useState } from 'react';
-import { createContext } from 'react';
 import Image from 'next/image';
 
-const sideBarContext = createContext()
 
-export const NavbarStructure = ({children}) => {
+export const MobileNavbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
-        <div className='sticky shrink-0 top-0 flex w-full h-40 z-50 text-black bg-white items-center shadow-sm'>                
+        <div className='lg:hidden sticky shrink-0 top-0 flex w-full h-40 z-50 text-black bg-white items-center shadow-sm'>                
             <Image className={`${isMobileMenuOpen ? "transform-[translate3d(calc(50vw-25rem),7.125rem,0)_scale(1)]" : "transform-[translate3d(3.0625rem,2.25rem,0)_scale(.568)]"} 
                 w-72 h-auto
                 absolute left-0 top-0 origin-top-left text-black z-70 transition-[transform] duration-300 ease-in-out`}
@@ -52,7 +50,7 @@ export const NavbarStructure = ({children}) => {
                         <div className='absolute w-auto h-5 right-6 text-gray-500 transition-colors duration-300'><ChevronRight size={12} /></div>
                     </div>
                     <div className='relative w-full h-28 pl-36 flex items-center bg-gray-100 rounded-sm overflow-hidden transition-colors duration-300 cursor-pointer'>
-                        <div className='absolute left-20 top-[50%] w-12 h-auto transform-[translate3d(-50%,-50%,0)] text-gray-300 transition-colors duration-300'><Shield size={24}/></div>
+                        <div className='absolute left-20 top-[50%] w-12 h-auto transform-[translate3d(-50%,-50%,0)] text-gray-300 transition-colors duration-300'><Wrench size={24}/></div>
                         <div className='relative w-0.5 h-20 bg-gray-200 transition-colors duration-300' />
                         <div className='ml-10 text-4xl pt-[0.14em] leading-none text-black transition-colors duration-300'>Teams</div>
                         <div className='absolute w-auto h-5 right-6 text-gray-500 transition-colors duration-300'><ChevronRight size={12} /></div>
@@ -88,43 +86,6 @@ export const NavbarStructure = ({children}) => {
 
         
     )
-}
-
-
-export const NavbarItem = ({icon, text, active, alert}) => {
-    const { isExpanded } = useContext(sideBarContext);
-    return (
-        <li className={`
-            relative flex items-start py-2 px-3 my-1
-            font-medium cursor-pointer
-            transition-colors
-            ${
-                active ? 'bg-gradient-to-tr from-gray-200 to-gray-100 text-gray-800'
-                : 'hover:bg-gray-50 text-gray-400'
-            }
-        
-        `}>
-            {icon}
-            <span className={`overflow-hidden transition-all  duration-300 ease-in-out ${isExpanded ? 'w-44 ml-2' : 'w-0'}`}>{text}</span>
-            {alert && (<div className={`absolute right-2 w-2 h-2 rounded bg-red-400
-                ${ isExpanded ? '' : 'top-2'}
-                `} />)}
-        </li>
-    )
-}
-
-const MobileNavbar = () => {
-        return (
-            <NavbarStructure>
-                <NavbarItem icon={<House size={24}/>} text="Home" active={true} />
-                <NavbarItem icon={<Newspaper size={24}/>} text="News" />
-                <NavbarItem icon={<Users size={24} />} text="Drivers" />
-                <NavbarItem icon={<Shield size={24} />} text="Teams" />
-                <NavbarItem icon={<Calendar size={24} />} text="Sessions" alert={true} />
-                <NavbarItem icon={<ChartNoAxesColumn size={24} />} text="Results" />
-                <NavbarItem icon={<AlignEndHorizontal size={24} />} text="Analyze" />
-            </NavbarStructure>
-        )
 }
 
 export default MobileNavbar;

@@ -1,87 +1,173 @@
 'use client';
 
 import Link from 'next/link';
-import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, CircleChevronRight, CircleChevronLeft, Menu} from 'lucide-react';
+import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, ChevronRight, CircleChevronLeft, Menu, X, Wrench, ChevronLeft} from 'lucide-react';
 import { useContext, useState } from 'react';
-import { createContext } from 'react';
+import Image from 'next/image';
 
-const sideBarContext = createContext()
 
-export const NavbarStructure = ({children}) => {
-    const [isExpanded, setIsExpanded] = useState(false); 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+export const PCNavbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
-        <aside className='hidden sticky top-0 lg:h-screen'>
-            <nav className='hidden bg-white h-full lg:flex flex-col border-r border-r-gray-300 shadow-sm' onMouseEnter={() => setIsExpanded(true)} onMouseLeave={() => setIsExpanded(false)} >
-                <div className='p-4 pb-2 h-10 mt-2 mb-4 ml-2 flex justify-between items-center relative overflow-visible'> 
-                    <p className={`absolute top-0 left-0 text-black pb-4 overflow-hidden transition-all  duration-300 ease-in-out ${ isExpanded ? "font-bold text-lg leading-4" : "font-medium text-xs leading-3"}`}>
-                        Sector<br/>Talks
-                    </p>
-                    <button onClick={() => setIsExpanded(!isExpanded) } className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 p-1.5 cursor-pointer z-100'>
-                        { isExpanded ? <CircleChevronLeft size={18} /> : <CircleChevronRight size={18} /> }
-                    </button>
+        <div className={`hidden sticky shrink-0 top-0 lg:flex h-screen w-30 z-50 text-black bg-white
+        before:content-[""] before:absolute before:top-0 before:right-0 before:w-[cal(100%+16rem)] before:h-full before:bg-white before:shadow-sm before:transition-[transform] before:duration-300 before:ease-in-out   
+         ${isMenuOpen ? "before:transform-[translate3d(15rem,0,0)]" : "before:transform-[translateZ(0)]"}`}
+         onMouseEnter={() => setIsMenuOpen(true)} onMouseLeave={() => setIsMenuOpen(false)}>                
+            <div className="relative h-full w-30 z-50 text-black bg-white">
+                <Image className={`${isMenuOpen ? "transform-[translate3d(calc(-50%+.5rem),0,0)_scale(1.5)]" : "transform-[translate3d(-50%,0,0)]"} 
+                w-26 h-auto
+                absolute left-[50%] top-6 origin-top-left text-black z-70 transition-[transform] duration-300 ease-in-out`}
+                src="/logo.svg" alt="Sector Talks Logo" width={60} height={30} />
+                
+                <div className={`transform-[translateY(12.625rem)] absolute top-0 left-0 box-border h-20 border-l-black border-l-4 bg-gray-100 opacity-100 pointer-events-none 
+                transition-[transform,height,width] duration-300 ease-in-out
+                ${isMenuOpen ? "w-[calc(100%+13.5rem)]" : "w-[calc(100%-1rem)]"}
+                `}>
                 </div>
-                
-                <sideBarContext.Provider value={{isExpanded}}>
-                    <ul className='flex-1 px-3'>
-                        {children}
-                    </ul>
-               </sideBarContext.Provider>
-                
-                <div className='flex p-3 border-t border-t-gray-300 items-center justify-center'>
-                    <div className={`py-2 ${ isExpanded ? "pl-2" : "px-2"}`}><UserCircle size={24} /></div>
-                    <div className={`flex justify-between items-center overflow-hidden transition-all  duration-300 ease-in-out
-                    ${ isExpanded ? "w-44 ml-2" : "w-0"}`}>
-                        <div className='leading-4'>
-                            <h4 className='font-normal from-'>John Doe</h4>
-                            <span className='text-xs text-gray-600'>johndoe@gmail.com</span>
-                        </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(12.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <House size={14}/>
                     </div>
-                    <div className={`${ isExpanded ? "" : "hidden"}`}>
-                        <MoreVertical size={20} />
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Home
                     </div>
                 </div>
-            </nav>
+                <div className={`absolute top-0 left-0 transform-[translateY(17.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <Newspaper size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        News
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(22.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <Users size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Drivers
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(27.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <Wrench size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Teams
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(32.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <Calendar size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Sessions
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(37.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <ChartNoAxesColumn size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Results
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(42.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <AlignEndHorizontal size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Analyze
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(42.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <AlignEndHorizontal size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Analyze
+                    </div>
+                </div>
+                <div className={`absolute top-0 left-0 transform-[translateY(47.875rem)] bg-gray-200 h-px transition-[transform,width] duration-300 ease-in-out
+                ${isMenuOpen ? "w-72" : "w-full"}
+                `}></div>
+                <div className={`absolute top-0 left-0 transform-[translateY(48.875rem)]  h-18 cursor-pointer transition-[transform,width] duration-300 ease-in-out text-black
+                before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out pointer-events-none   
+                ${isMenuOpen ? "w-90" : "w-full"}
+                `}>
+                    <div className='cursor-pointer text-gray-300 w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] transition-[colors, transform] duration-300'>
+                        <UserCircle size={14}/>
+                    </div>
+                    <div className={`absolute w-53 left-28 top-9 pointer-events-none font-medium text-lg text-black
+                         transition-[opacity,transform] duration-300 ease-in-out
+                     ${isMenuOpen ? "transform-[translate3d(0,-50%,0)] opacity-100" : "transform-[translate3d(-1rem,-50%,0)] opacity-0"}   
+                    `}>
+                        Account
+                    </div>
+                </div>
+                
+                <div className='absolute w-200 px-14 bottom-[calc(50%-43.8125rem)] left-[calc(50%-25rem)] flex gap-0 justify-between box-border items-center'>
 
-        </aside>
-    )
-}
+                </div>
+                <div className={`absolute flex justify-center items-center cursor-pointer bottom-8 right-15 w-10 h-auto z-70 text-black duration-300 ease-in-out
+                    ${isMenuOpen ? "transform-[translate3d(calc(15rem-50%),0,0)]" : "transform-[translate3d(calc(35%),0,0)]"}
+                    `} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    {isMenuOpen ? (<ChevronLeft size={15} />) : (<ChevronRight size={15} />)}
+                </div>
+            </div>
+            
+        </div>
 
-
-export const NavbarItem = ({icon, text, active, alert}) => {
-    const { isExpanded } = useContext(sideBarContext);
-    return (
-        <li className={`
-            relative flex items-start py-2 px-3 my-1
-            font-medium cursor-pointer
-            transition-colors
-            ${
-                active ? 'bg-gradient-to-tr from-gray-200 to-gray-100 text-gray-800'
-                : 'hover:bg-gray-50 text-gray-400'
-            }
         
-        `}>
-            {icon}
-            <span className={`overflow-hidden transition-all  duration-300 ease-in-out ${isExpanded ? 'w-44 ml-2' : 'w-0'}`}>{text}</span>
-            {alert && (<div className={`absolute right-2 w-2 h-2 rounded bg-red-400
-                ${ isExpanded ? '' : 'top-2'}
-                `} />)}
-        </li>
     )
-}
-
-const PCNavbar = () => {
-        return (
-            <NavbarStructure>
-                <NavbarItem icon={<House size={24}/>} text="Home" active={true} />
-                <NavbarItem icon={<Newspaper size={24}/>} text="News" />
-                <NavbarItem icon={<Users size={24} />} text="Drivers" />
-                <NavbarItem icon={<Shield size={24} />} text="Teams" />
-                <NavbarItem icon={<Calendar size={24} />} text="Sessions" alert={true} />
-                <NavbarItem icon={<ChartNoAxesColumn size={24} />} text="Results" />
-                <NavbarItem icon={<AlignEndHorizontal size={24} />} text="Analyze" />
-            </NavbarStructure>
-        )
 }
 
 export default PCNavbar;
