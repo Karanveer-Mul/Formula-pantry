@@ -35,6 +35,32 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <div className="scroll-mt-36 lg:scroll-m-0 bg-dark-main-gradient text-white">
+        <div className="relative w-full h-screen box-border overflow-hidden">
+          <div className="flex w-full h-full justify-center">
+            <div className="w-4/5 relative items-start flex flex-col lg:flex-row mt-6">
+              <div className="flex flex-col h-3/5  justify-between items- w-full lg:w-1/2">
+                <span className="font-sans text-[3rem] font-bold ">New Regulations</span>
+                <div>
+                  <span className="text-[8rem] font-gilroy font-light tracking-tight ">Title 1</span>
+                  <p className="font-harmony font-normal text-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <div className="mt-2">
+                    <Link href="/" className="w-fit px-8 py-4 outline-1 flex justify-center items-center gap-4">
+                      Read More <MoveRight size={8}></MoveRight>
+                    </Link>
+                  </div>
+                  
+                </div>                                
+              </div>
+              <div className="w-full lg:w-1/2 ">
+                Images                                
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 };
