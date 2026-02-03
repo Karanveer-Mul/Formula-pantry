@@ -20,14 +20,32 @@ body,html {
   font-display: swap; /* Improves performance */
 }
 
+:root {
+  --font-gilroy: var(--font-gilroy);
+  --font-novecento: var(--font-novecento);
+  --font-harmony: var(--font-harmony);
+}
+
+@layer utilities {
+  .font-gilroy {
+    font-family: var(--font-gilroy), sans-serif;
+  }
+
+  .font-novecento {
+    font-family: var(--font-novecento), sans-serif;
+  }
+
+  .font-harmony {
+    font-family: var(--font-harmony), sans-serif;
+  }
+}
+
 
 @layer components {
   .hollow-text {
     @apply pr-4 leading-none opacity-60;
     @apply bg-clip-text text-transparent;
     @apply w-fit;
-
-    font-family: Novecentosanswide-Bold;
 
     background-image: linear-gradient(
       -45deg,

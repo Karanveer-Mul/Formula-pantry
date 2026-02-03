@@ -1,104 +1,37 @@
+import { MoveRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
 export const Home = () => {
   return (
-    <div className="relative isolate pt-14">
-      <div className="relative px-6 lg:px-8 mx-auto max-w-4xl pb-32 sm:pb-48 lg:pb-56 overflow-hidden">
-        <div className="absolute inset-0 top-10 overflow-hidden" aria-hidden="true">
-          <div className="bg-[linear-gradient(180deg,#fffa00,#fffa00_10%,rgba(255,250,0,0)_85%)] pt-11">
-            <span className="text-left text-white tracking-tighter font-extrabold z-1 text-9xl block max-w-[100vw] whitespace-nowrap overflow-hidden">
-              FORMULA ONE
-            </span>
-          </div>
-          <div className="pointer-events-none overflow-hidden">
-            <span className="leading-48 block max-w-[100vw] whitespace-nowrap overflow-hidden text-[10rem] text-center font-extrabold tracking-tighter bg-[repeating-linear-gradient(135deg,#6a7282_0px,#6a7282_1px,transparent_1px,transparent_4px)] bg-clip-text text-transparent opacity-15">
-              SECTORTALKS
-            </span>
-          </div>
-        </div>
-        <div className="px-6 lg:px-8 mx-auto max-w-4xl pb-32 sm:pb-48 lg:pb-56 relative z-10">
-          <div className="text-left">
-            <h1 className="text-5xl font-bold tracking-tight text-balance text-gray-900 sm:text-7xl">
-              SECTOR
-              <br />
-              TALKS
-            </h1>
-            <div className="py-10 sm:mb-20">
-              <p className="z-3 text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl ">
-                <span className="px-1">REV YOUR CURIOSITY</span>
-              </p>
-              <span className="my-3 mx-2 z-3 text-md font-light tracking-tight text-gray-500 sm:text-xl/8">
-                ver. 0.0.1
-              </span>
+    <div className="w-full overflow-hidden lg:text-[8px]">
+      <div className="scroll-mt-36 lg:scroll-m-0">
+        <div className="relative w-full h-screen box-border overflow-hidden">
+          <div className="flex w-full h-full justify-center items-center">
+            <div className="w-full lg:w-4/5 relative justify-center items-center lg:items-start flex flex-col text-center lg:text-left">
+              <div className="z-10 flex items-start w-4/5">
+                <Image loading="eager" src="/logo.svg" alt="Sector Talks Logo" width={180} height={90} />                                
+              </div>
+              <div className="pt-10 pb-30 lg:pt-30 lg:pb-60 z-10">
+                <div className="bg-white p-4 text-7xl lg:text-8xl font-harmony font-bold tracking-tight text-balance text-gray-900 ">
+                  THEIR LAP. YOUR ANALYSIS.
+                </div>
+                <span className="my-4 mx-2 text-5xl lg:text-5xl font-gilroy font-light tracking-tight text-gray-100 sm:text-xl/8">
+                  ver. 0.0.1
+                </span>
+              </div>
+              <div className="z-10 mb-200 bg-[#FFFA00] px-16 py-8 font-harmony text-4xl lg:text-4xl font-bold text-black shadow-xs hover:bg-[#F6F200] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[white]">
+                <Link href="/" className="flex justify-center items-center gap-4">
+                  Explore <MoveRight size={16}></MoveRight>
+                </Link>
+              </div>
+              <div className="pt-50 text-center text-white absolute bg-[linear-gradient(180deg,#1E00FF,#1E00FF_40%,rgba(255,250,0,0)_85%)] w-full top-5/12 left-1/2 font-novecento font-bold transform-[translate(-50%,-50%)] text-[25rem] -tracking-widest">
+                <span className="opacity-80">MUSTBETHE</span>
+              </div>
+              <div className='z-5 absolute rotate-180 top-3/5 left-1/2 font-novecento font-bold transform-[translateX(50%)] text-[25rem] -tracking-widest hollow-text h-100'>
+                WATER
+              </div>
             </div>
-            <div className="flex items-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="px-6 lg:px-8 mx-auto max-w-4xl pb-32 sm:pb-48 lg:pb-56">
-        <div className="text-left">
-          <h1 className="text-5xl font-bold tracking-tight text-balance text-gray-900 sm:text-7xl">
-            SECTOR
-            <br />
-            TALKS
-          </h1>
-          <div className="py-10 mt-10 sm:py-30">
-            <p className="z-3 text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl ">
-              <span className="bg-white px-1">REV YOUR CURIOSITY</span>
-            </p>
-            <p className="my-3 mx-2 z-3 text-md font-light tracking-tight text-gray-500 sm:text-xl/8">
-              ver. 0.0.1
-            </p>
-          </div>
-          <div className="flex items-center gap-x-6">
-            <a
-              href="#"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Get started
-            </a>
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
-              Learn more <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className=" px-6 lg:px-8 mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
-        <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-          <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-            Announcing our next round of funding.{" "}
-            <a href="#" className="font-semibold text-indigo-600">
-              <span aria-hidden="true" className="absolute inset-0" />
-              Read more <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-        <div className="text-center">
-          <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
-            Data to enrich your online business
-          </h1>
-          <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Get started
-            </a>
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
-              Learn more <span aria-hidden="true">→</span>
-            </a>
           </div>
         </div>
       </div>
