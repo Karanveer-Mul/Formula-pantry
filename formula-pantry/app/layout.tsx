@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { gilroy, harmony, novecento } from "./font";
 import "./globals.css";
-import PCNavbar from "@/components/PCNavbar";
-import MobileNavbar from "@/components/MobileNavbar";
+import PCNavbar from "@/app/components/layout/PCNavbar";
+import MobileNavbar from "@/app/components/layout/MobileNavbar";
 import Head from "next/head";
 
 export const metadata: Metadata = {

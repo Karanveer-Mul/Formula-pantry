@@ -11,6 +11,9 @@
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
+    "embla-carousel": "^9.0.0-rc01",
+    "embla-carousel-autoplay": "^9.0.0-rc01",
+    "embla-carousel-react": "^9.0.0-rc01",
     "lucide-react": "^0.563.0",
     "next": "^16.1.6",
     "react": "19.2.3",

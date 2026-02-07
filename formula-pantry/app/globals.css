@@ -24,6 +24,11 @@ body,html {
   --font-gilroy: var(--font-gilroy);
   --font-novecento: var(--font-novecento);
   --font-harmony: var(--font-harmony);
+  --text-high-contrast-rgb-value: 49, 49, 49;
+  --detail-medium-contrast: rgb(234, 234, 234);
+  --text-body: rgb(54, 49, 61);
+  --detail-high-contrast: rgb(192, 192, 192);
+  
 }
 
 @layer utilities {

@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, ChevronRight, CircleChevronLeft, Menu, X, Wrench, ChevronLeft} from 'lucide-react';
-import { useContext, useState } from 'react';
+import { House, Newspaper, Users, ChartNoAxesColumn, AlignEndHorizontal, UserCircle, Calendar, ChevronRight, Wrench, ChevronLeft} from 'lucide-react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 
