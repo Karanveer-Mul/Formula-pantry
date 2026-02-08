@@ -137,7 +137,7 @@ export const EmblaCarousel = (props: PropType) => {
             <div className="embla__slide" key={index}>
               <div className="embla__slide__number">
                 <div className='embla__slide__img'>
-                    <Image className="" src={`https://picsum.photos/600/350?v=${index}`} alt="Your alt text" width={600} height={350} />
+                    <Image className="" src={`https://picsum.photos/640/360?v=${index}`} alt="Your alt text" width={640} height={360} />
                 </div>
                 <div className={`embla__content ${activeSlides.has(index) ? 'embla__content__active' : 'embla__content__inactive'}`}>
                     <span className="text-[8rem] font-gilroy font-light tracking-tighter leading-36">FRONT WING {index + 1}</span>

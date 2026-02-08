@@ -1,5 +1,5 @@
 import Hero from "./component/Hero";
-import Regulations from "./component/Regulations";
+import Regulations from "./component/Regulations/Regulations";
 import LatestNewsSection from "./component/LatestNews/LatestNewsSection";
 
 export const Home = () => {
