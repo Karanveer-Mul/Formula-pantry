@@ -11,7 +11,20 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
     turbopackFileSystemCacheForDev: true,
-  }   
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+  allowedDevOrigins: [
+    'http://192.168.56.1:3000',
+    ]
 };
 
 export default nextConfig;

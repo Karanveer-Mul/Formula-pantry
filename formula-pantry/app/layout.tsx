@@ -1,32 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { gilroy, harmony, novecento } from "./font";
 import "./globals.css";
-import Navbar from "../components/PCNavbar";
-import PCNavbar from "../components/PCNavbar";
-import MobileNavbar from "@/components/MobileNavbar";
-
-const harmonySans = localFont({
-  src: [
-    {
-      path: "../public/fonts/harmonyos-sans-webfont/HarmonyOS_Sans_Regular.woff",
-      weight: "400",
-      style: "normal",
-      variable: "--font-harmony-sans-regular",
-    },
-    {
-      path: "../public/fonts/harmonyos-sans-webfont/HarmonyOS_Sans_Medium.woff",
-      weight: "500",
-      style: "normal",
-      variable: "--font-harmony-sans-medium",
-    },
-    {
-      path: "../public/fonts/harmonyos-sans-webfont/HarmonyOS_Sans_Bold.woff",
-      weight: "700",
-      style: "normal",
-      variable: "--font-harmony-sans-bold",
-    },
-  ],
-});
+import PCNavbar from "@/app/components/layout/PCNavbar";
+import MobileNavbar from "@/app/components/layout/MobileNavbar";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Sector Talks",
@@ -39,13 +16,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${gilroy.variable} ${harmony.variable} ${novecento.variable}`}>
+      <Head>
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Sector Talks" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
       <body className={`antialiased`}>
         <div className="relative w-full min-h-screen">
           <div className='relative w-full flex flex-col lg:flex-row'>
             <MobileNavbar />
             <PCNavbar />
-            
+            {children}
           </div>
         </div>
       </body>

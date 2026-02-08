@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { House, Newspaper, Users, Shield , ChartNoAxesColumn, AlignEndHorizontal, MoreVertical, UserCircle, Calendar, ChevronRight, CircleChevronLeft, Menu, X, Wrench} from 'lucide-react';
-import { useContext, useState } from 'react';
+import { House, Newspaper, Users, ChartNoAxesColumn, AlignEndHorizontal, Calendar, ChevronRight, Menu, X, Wrench} from 'lucide-react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 
@@ -10,7 +9,7 @@ export const MobileNavbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
         <div className='lg:hidden sticky shrink-0 top-0 flex w-full h-40 z-50 text-black bg-white items-center shadow-sm'>                
-            <Image className={`${isMobileMenuOpen ? "transform-[translate3d(calc(50vw-25rem),7.125rem,0)_scale(1)]" : "transform-[translate3d(3.0625rem,2.25rem,0)_scale(.568)]"} 
+            <Image loading="eager" className={`${isMobileMenuOpen ? "transform-[translate3d(calc(50vw-25rem),7.125rem,0)_scale(1)]" : "transform-[translate3d(3.0625rem,2.25rem,0)_scale(.568)]"} 
                 w-72 h-auto
                 absolute left-0 top-0 origin-top-left text-black z-70 transition-[transform] duration-300 ease-in-out`}
                 src="/logo.svg" alt="Sector Talks Logo" width={60} height={30} >

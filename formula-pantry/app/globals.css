@@ -20,14 +20,37 @@ body,html {
   font-display: swap; /* Improves performance */
 }
 
+:root {
+  --font-gilroy: var(--font-gilroy);
+  --font-novecento: var(--font-novecento);
+  --font-harmony: var(--font-harmony);
+  --text-high-contrast-rgb-value: 49, 49, 49;
+  --detail-medium-contrast: rgb(234, 234, 234);
+  --text-body: rgb(54, 49, 61);
+  --detail-high-contrast: rgb(192, 192, 192);
+  
+}
+
+@layer utilities {
+  .font-gilroy {
+    font-family: var(--font-gilroy), sans-serif;
+  }
+
+  .font-novecento {
+    font-family: var(--font-novecento), sans-serif;
+  }
+
+  .font-harmony {
+    font-family: var(--font-harmony), sans-serif;
+  }
+}
+
 
 @layer components {
   .hollow-text {
     @apply pr-4 leading-none opacity-60;
     @apply bg-clip-text text-transparent;
     @apply w-fit;
-
-    font-family: Novecentosanswide-Bold;
 
     background-image: linear-gradient(
       -45deg,
@@ -51,6 +74,62 @@ body,html {
     font-size: 15.625rem;
     letter-spacing: -0.625rem;
   }
+
+  .hollow-text-full {
+    @apply pr-4 leading-none opacity-10;
+    @apply bg-clip-text text-transparent;
+    @apply w-fit;
+
+    --hollow-color: #FFFB00;
+
+    background-image: linear-gradient(
+      -45deg, 
+      transparent,
+      transparent 20.5805011712%,
+      var(--hollow-color) 0,
+      var(--hollow-color) 29.4194988288%,
+      transparent 0,
+      transparent 70.5805011712%,
+      var(--hollow-color) 0,
+      var(--hollow-color) 79.4194988288%,
+      transparent 0,
+      transparent
+    );
+
+    background-size: 0.5rem 0.5rem;
+    background-repeat: repeat;
+    background-position: 0 0;
+
+    letter-spacing: -0.625rem;
+  }
 }
 
+
+@layer utilities {
+  .bg-dark-main-gradient {
+    background-image: linear-gradient(
+      130deg,
+      hsl(211deg 51% 28%) 0%,
+      hsl(220deg 38% 21%) 5%,
+      hsl(230deg 24% 15%) 32%,
+      hsl(230deg 22% 11%) 72%,
+      hsl(230deg 19% 6%) 92%,
+      hsl(230deg 18% 7%) 100%
+  );
+    background-size: 400% 400%;
+    animation: dark-main-gradient-animation 8s ease infinite;
+  }
+
+  @keyframes dark-main-gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+  }
+}
 
