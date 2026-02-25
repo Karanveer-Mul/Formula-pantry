@@ -34,10 +34,7 @@ func (s *SessionService) GetSessionByID(id uuid.UUID) (*models.Session, error) {
 }
 
 // GetSessionBySeason retrieves all sessions for a season
-func (s *SessionService) GetSessionBySeason(season int) ([]models.Session, error) {
-	if season < 1950 || season > 2100 {
-		return nil, errors.New("invalid season")
-	}
+func (s *SessionService) GetSessionBySeason(season int16) ([]models.Session, error) {
 	return s.sessionRepo.GetBySeason(season)
 }
 
@@ -49,3 +46,6 @@ func (s *SessionService) GetSessionWithResults(id uuid.UUID) (*models.Session, e
 	return s.sessionRepo.GetWithResults(id)
 }
 
+func (s *SessionService) GetUpcomingSessionTitles(limit int) ([]models.UpcomingSessionTitle, error) {
+	return s.sessionRepo.GetUpcomingSessionTitles(limit)
+}

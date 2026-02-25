@@ -11,10 +11,10 @@ type SessionResult struct {
 	DriverID   uuid.UUID `gorm:"type:uuid;not null" json:"driver_id"`
 	RaceFormat string    `gorm:"type:varchar(50);not null" json:"race_format"` // grand_prix, sprint_qualifying, sprint, qualifying.
 	// Result data
-	Position      *int8   `json:"position"`      // Final position (1-22, or null if DNF)
-	GridPosition  *int8   `json:"grid_position"` // Starting position
+	Position      *int16  `json:"position"`      // Final position (1-22, or null if DNF)
+	GridPosition  *int16  `json:"grid_position"` // Starting position
 	Points        float64 `gorm:"type:numeric(10,2);default:0.0" json:"points"`
-	LapsCompleted *int8   `json:"laps_completed"`
+	LapsCompleted *int16  `json:"laps_completed"`
 
 	// Timing
 	TotalRaceTime  *string `gorm:"type:varchar(20)" json:"total_race_time"`  // "1:32:07.986"
@@ -26,7 +26,7 @@ type SessionResult struct {
 	// Performance metrics
 	AverageLapTime *float64 `gorm:"type:numeric(10,3)" json:"average_lap_time"` // in seconds
 	TopSpeed       *float64 `gorm:"type:numeric(10,2)" json:"top_speed"`        // km/h
-	PitStops       int8     `gorm:"default:0" json:"pit_stops"`
+	PitStops       int16    `gorm:"default:0" json:"pit_stops"`
 
 	// Relationships
 	Session *Session `gorm:"foreignKey:SessionID;references:ID" json:"session,omitempty"`

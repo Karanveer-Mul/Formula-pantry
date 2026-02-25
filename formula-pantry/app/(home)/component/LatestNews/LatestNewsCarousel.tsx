@@ -6,9 +6,6 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { NextButton, PrevButton, usePrevNextButtons } from '../../../components/Carousel/EmblaCarouselArrowButtons'
 import { DotButton, useDotButton } from '../../../components/Carousel/EmblaCarouselDotButton'
 import './embla.css'
-import Autoplay from 'embla-carousel-autoplay';
-import { useAutoplay } from '@/app/components/Carousel/EmblaCarouselAutoplay';
-import { useAutoplayProgress } from '@/app/components/Carousel/EmblaCarouselAutoplayProgress';
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';

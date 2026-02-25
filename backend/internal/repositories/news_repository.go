@@ -10,8 +10,9 @@ import (
 
 // NewsRepository defines the interface for news data operations
 type NewsRepository interface {
-	GetAll() ([]models.News, error)
+	GetAll(index int, limit int) ([]models.News, error)
 	GetByID(id uuid.UUID) (*models.News, error)
+	GetLatestNewsTitles(index int, limit int) ([]models.LatestNewsTitle, error)
 	Create(news *models.News) error
 	Update(news *models.News) error
 	Delete(id uuid.UUID) error
@@ -28,9 +29,9 @@ func NewNewsRepository() NewsRepository {
 	}
 }
 
-func (r *newsRepository) GetAll() ([]models.News, error) {
+func (r *newsRepository) GetAll(index int, limit int) ([]models.News, error) {
 	var news []models.News
-	err := r.db.Order("created_on DESC").Find(&news).Error
+	err := r.db.Order("created_on DESC").Offset(index).Limit(limit).Find(&news).Error
 	return news, err
 }
 
@@ -41,6 +42,12 @@ func (r *newsRepository) GetByID(id uuid.UUID) (*models.News, error) {
 		return nil, err
 	}
 	return &news, nil
+}
+
+func (r *newsRepository) GetLatestNewsTitles(index int, limit int) ([]models.LatestNewsTitle, error) {
+	var news []models.LatestNewsTitle
+	err := r.db.Select("id, title, hook, updated_on").Order("created_on DESC").Offset(index).Limit(limit).Find(&news).Error
+	return news, err
 }
 
 func (r *newsRepository) Create(news *models.News) error {
@@ -54,4 +61,3 @@ func (r *newsRepository) Update(news *models.News) error {
 func (r *newsRepository) Delete(id uuid.UUID) error {
 	return r.db.Delete(&models.News{}, "id = ?", id).Error
 }
-

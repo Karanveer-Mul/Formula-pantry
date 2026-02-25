@@ -1,16 +1,24 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-body,html {
-    margin: 0;
-    padding: 0;
-    font-size: 5.77778px;
-    --vh-offset: 0px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    font-family: sans-serif;
+body, html {
+  margin: 0;
+  padding: 0;
+  font-size: 5.77778px;
+  --vh-offset: 0px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-family: sans-serif;
 }
+
+@media (min-width: 1024px) {
+  body, html {
+    font-size: 8px !important;
+  }
+}
+
+
 
 @font-face {
   font-family: 'Novecentosanswide-Bold';
@@ -41,6 +49,27 @@ body,html {
   }
 
   .font-harmony {
+    font-family: var(--font-harmony), sans-serif;
+  }
+  .navbar-item-selected {
+    @apply absolute top-0 left-0 box-border h-20 border-l-black border-l-4 bg-gray-100 opacity-100 pointer-events-none duration-300 ease-in-out;
+    transition-property: transform,height,width;
+  }
+  .navbar-item {
+    @apply absolute top-0 left-0 h-18 duration-300 ease-in-out hover:text-black hover:bg-gray-100;
+    @apply before:content-[""] before:absolute before:opacity-0 before:top-0 before:left-6 before:w-78 before:h-full before:bg-white before:rounded-sm before:transition-opacity before:duration-200 before:ease-in-out;
+
+    transition-property: transform,width;
+  }
+  .navbar-item-icon {
+    @apply w-11 absolute left-15 top-9 h-auto text-2xl whitespace-nowrap transform-[translate3d(-50%,-50%,0)] duration-300;
+  
+    transition-property: transform,colors;
+  }
+  .navbar-item-label {
+    @apply absolute w-53 left-28 top-9 pointer-events-none font-medium text-xl  duration-300 ease-in-out;
+  
+    transition-property: transform,opacity,colors;
     font-family: var(--font-harmony), sans-serif;
   }
 }
@@ -117,7 +146,7 @@ body,html {
       hsl(230deg 18% 7%) 100%
   );
     background-size: 400% 400%;
-    animation: dark-main-gradient-animation 8s ease infinite;
+    animation: dark-main-gradient-animation 4s ease infinite;
   }
 
   @keyframes dark-main-gradient-animation {

@@ -4,6 +4,7 @@ import (
 	"formula-pantry-backend/internal/services"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -67,8 +68,14 @@ func (h *DriverHandler) GetDriversBySeason(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid season parameter"})
 		return
 	}
+	currentYear := time.Now().Year()
+	if season < 1950 || season > currentYear {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid season parameter"})
+		return
+	}
+	seasonInt8 := int16(season)
 
-	drivers, err := h.driverService.GetDriversBySeason(season)
+	drivers, err := h.driverService.GetDriversBySeason(seasonInt8)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -98,4 +105,3 @@ func (h *DriverHandler) GetDriverResults(c *gin.Context) {
 		"data": driver,
 	})
 }
-

@@ -42,6 +42,7 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 			sessions.GET("", sessionHandler.GetSessionsBySeason)
 			sessions.GET("/:id", sessionHandler.GetSessionByID)
 			sessions.GET("/:id/results", sessionHandler.GetSessionResults)
+			sessions.GET("/upcomingSessionTitles", sessionHandler.GetUpcomingSessionTitles)
 		}
 
 		// Drivers routes
@@ -72,6 +73,8 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 		{
 			news.GET("", newsHandler.GetAllNews)
 			news.GET("/:id", newsHandler.GetNewsByID)
+			news.GET("/latestTitles", newsHandler.GetLatestNewsTitles)
+			news.POST("", newsHandler.Create)
 		}
 	}
 
@@ -94,4 +97,3 @@ func SetupRoutesWithConfig(router *gin.Engine, cfg *config.Config) {
 	// Setup routes
 	SetupRoutes(router, cfg)
 }
-

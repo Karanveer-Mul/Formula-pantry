@@ -1,6 +1,5 @@
-import { CircleArrowLeft, CircleArrowRight, MoveRight, MoveUpRight } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 import Image from "next/image";
-import RegulationsCarousel from "./RegulationsCarousel";
 import Link from "next/link";
 
 export default function Regulations() {

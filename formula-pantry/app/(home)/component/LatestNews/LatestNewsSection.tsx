@@ -1,4 +1,3 @@
-import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
 import LatestNewsCarousel from "./LatestNewsCarousel";
 
 export default function LatestNewsSection() {
