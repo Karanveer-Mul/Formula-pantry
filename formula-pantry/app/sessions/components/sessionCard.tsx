@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Session } from "../api/types";
 import { Flag, Ruler, Map } from "lucide-react";
+import Link from "next/link";
 
 interface SessionCardProps {
   session: Session;
@@ -17,7 +18,7 @@ export default function SessionCard({ session }: SessionCardProps) {
   }
 
   return (
-    <div className="p-8 border-gray-300 hover:bor der-gray-400 bg-linear-to-t from-black/1 to-transparent border duration-300 ease-in-out shadow-sm transition-shadow hover:shadow-lg hover:cursor-pointer flex flex-col items-start rounded-xl">
+    <Link href={`/sessions/${session.id}`} className="p-8 border-gray-300 hover:border-gray-400 bg-linear-to-t from-black/1 to-transparent border duration-300 ease-in-out shadow-sm transition-shadow hover:shadow-lg hover:cursor-pointer flex flex-col items-start rounded-xl">
       <Image loading="lazy" className="w-full" width={300} height={150} src={`/sessions/${session.city}/banner.avif`} alt={session.race_name} />
       <div className="h-fit w-full mt-4 flex flex-col">
         <div className="font-bold font-novecento text-4xl">{session.race_name}</div>
@@ -60,6 +61,6 @@ export default function SessionCard({ session }: SessionCardProps) {
           </div>      
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
