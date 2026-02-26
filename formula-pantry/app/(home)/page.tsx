@@ -4,7 +4,7 @@ import LatestNewsSection from "./component/LatestNews/LatestNewsSection";
 
 export const Home = () => {
   return (
-    <div className="w-full overflow-hidden lg:text-[8px]">
+    <div className="w-full overflow-hidden">
       <Hero />
       <Regulations />
       <LatestNewsSection />

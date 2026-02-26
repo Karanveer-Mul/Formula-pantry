@@ -10,6 +10,9 @@ import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { News } from '@/app/news/api/types';  
+import { getFirstArticleSection } from "@/app/news/components/newsSection";
+import { convertUtcTimeToMonthDateYear, truncateContent} from "@/app/components/shared/helper"
+
 
 type LatestNewsCarouselProps = {
   newsArticles: News[];
@@ -134,7 +137,7 @@ export const EmblaCarousel = (props: PropType) => {
                     <span className='font-harmony font-normal text-2xl text-gray-500 mb-2'>
                       {new Date(news.updated_on).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric"})}
                     </span>
-                    <p className="font-harmony font-normal text-2xl mb-2">{news.section1}</p>   
+                    <p className="font-harmony font-normal text-2xl mb-2" dangerouslySetInnerHTML={{ __html: truncateContent(getFirstArticleSection(news).body, 400) }} />   
                     <span className='text-2xl font-bold font-harmony underline mb-2'>Read More</span>                   
                 </div>
                 <div className='embla__slide__img'>
