@@ -56,6 +56,13 @@ type News struct {
 	UpdatedOn  time.Time   `gorm:"not null" json:"updated_on"`
 }
 
+type LatestNewsTitle struct {
+	ID        uuid.UUID `gorm:"type:uuid;primary_key;default:gen_random_uuid()" json:"id"`
+	Title     string    `gorm:"type:varchar(255);not null" json:"title"`
+	Hook      string    `gorm:"type:text" json:"hook"`
+	UpdatedOn time.Time `gorm:"not null" json:"updated_on"`
+}
+
 // BeforeCreate hook to set timestamps
 func (n *News) BeforeCreate(tx *gorm.DB) error {
 	now := time.Now()
@@ -76,5 +83,10 @@ func (n *News) BeforeUpdate(tx *gorm.DB) error {
 
 // TableName specifies the table name
 func (News) TableName() string {
+	return "news"
+}
+
+// TableName specifies the table name
+func (LatestNewsTitle) TableName() string {
 	return "news"
 }

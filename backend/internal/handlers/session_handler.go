@@ -4,6 +4,7 @@ import (
 	"formula-pantry-backend/internal/services"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -63,12 +64,20 @@ func (h *SessionHandler) GetSessionsBySeason(c *gin.Context) {
 	}
 
 	season, err := strconv.Atoi(seasonStr)
+	currentYear := time.Now().Year()
+
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid season parameter"})
 		return
 	}
 
-	sessions, err := h.sessionService.GetSessionBySeason(season)
+	if season < 1950 || season > currentYear {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid season parameter"})
+		return
+	}
+	seasonInt8 := int16(season)
+
+	sessions, err := h.sessionService.GetSessionBySeason(seasonInt8)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -99,3 +108,22 @@ func (h *SessionHandler) GetSessionResults(c *gin.Context) {
 	})
 }
 
+func (h *SessionHandler) GetUpcomingSessionTitles(c *gin.Context) {
+
+	limitStr := c.DefaultQuery("limit", "3")
+	limit := 3
+	if val, err := strconv.Atoi(limitStr); err == nil {
+		limit = val
+	}
+
+	sessions, err := h.sessionService.GetUpcomingSessionTitles(limit)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve upcoming session titles"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": sessions,
+	})
+}

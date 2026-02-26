@@ -13,7 +13,7 @@ type DriverRepository interface {
 	GetAll() ([]models.Driver, error)
 	GetByID(id uuid.UUID) (*models.Driver, error)
 	GetByDriverID(driverID string) (*models.Driver, error)
-	GetBySeason(season int) ([]models.Driver, error)
+	GetBySeason(season int16) ([]models.Driver, error)
 	GetByTeamID(teamID uuid.UUID) ([]models.Driver, error)
 	Create(driver *models.Driver) error
 	Update(driver *models.Driver) error
@@ -56,7 +56,7 @@ func (r *driverRepository) GetByDriverID(driverID string) (*models.Driver, error
 	return &driver, nil
 }
 
-func (r *driverRepository) GetBySeason(season int) ([]models.Driver, error) {
+func (r *driverRepository) GetBySeason(season int16) ([]models.Driver, error) {
 	var drivers []models.Driver
 	err := r.db.Where("season = ?", season).Preload("Team").Order("season_position ASC").Find(&drivers).Error
 	return drivers, err
@@ -88,4 +88,3 @@ func (r *driverRepository) GetWithResults(id uuid.UUID) (*models.Driver, error) 
 	}
 	return &driver, nil
 }
-

@@ -3,6 +3,7 @@ package repositories
 import (
 	"formula-pantry-backend/internal/database"
 	"formula-pantry-backend/internal/models"
+	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -13,11 +14,12 @@ type SessionRepository interface {
 	GetAll() ([]models.Session, error)
 	GetByID(id uuid.UUID) (*models.Session, error)
 	GetBySessionID(sessionID string) (*models.Session, error)
-	GetBySeason(season int) ([]models.Session, error)
+	GetBySeason(season int16) ([]models.Session, error)
 	Create(session *models.Session) error
 	Update(session *models.Session) error
 	Delete(id uuid.UUID) error
 	GetWithResults(id uuid.UUID) (*models.Session, error)
+	GetUpcomingSessionTitles(limit int) ([]models.UpcomingSessionTitle, error)
 }
 
 type sessionRepository struct {
@@ -55,7 +57,7 @@ func (r *sessionRepository) GetBySessionID(sessionID string) (*models.Session, e
 	return &session, nil
 }
 
-func (r *sessionRepository) GetBySeason(season int) ([]models.Session, error) {
+func (r *sessionRepository) GetBySeason(season int16) ([]models.Session, error) {
 	var sessions []models.Session
 	err := r.db.Where("season = ?", season).Order("round_number ASC").Find(&sessions).Error
 	return sessions, err
@@ -82,3 +84,8 @@ func (r *sessionRepository) GetWithResults(id uuid.UUID) (*models.Session, error
 	return &session, nil
 }
 
+func (r *sessionRepository) GetUpcomingSessionTitles(limit int) ([]models.UpcomingSessionTitle, error) {
+	var sessions []models.UpcomingSessionTitle
+	err := r.db.Select("id, race_name, session_one_date_time, session_five_date_time").Where("session_one_date_time > ?", time.Now()).Order("session_one_date_time ASC").Limit(limit).Find(&sessions).Error
+	return sessions, err
+}

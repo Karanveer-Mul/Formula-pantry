@@ -6,31 +6,32 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { NextButton, PrevButton, usePrevNextButtons } from '../../../components/Carousel/EmblaCarouselArrowButtons'
 import { DotButton, useDotButton } from '../../../components/Carousel/EmblaCarouselDotButton'
 import './embla.css'
-import Autoplay from 'embla-carousel-autoplay';
-import { useAutoplay } from '@/app/components/Carousel/EmblaCarouselAutoplay';
-import { useAutoplayProgress } from '@/app/components/Carousel/EmblaCarouselAutoplayProgress';
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { News } from '@/app/news/api/types';  
 
-const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
-const SLIDE_COUNT = 7
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+type LatestNewsCarouselProps = {
+  newsArticles: News[];
+}
 
+const LatestNewsCarousel = (props: LatestNewsCarouselProps) => { 
+  const { newsArticles } = props;
 
-const LatestNewsCarousel = () => { 
-    return <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+  const OPTIONS: EmblaOptionsType = { align: 'start',  containScroll: 'trimSnaps', dragFree: false, loop: true };
+
+  return <EmblaCarousel slides={newsArticles} options={OPTIONS} />
 }
   
 export default LatestNewsCarousel;
 
-const TWEEN_FACTOR_BASE = 0.52
+const TWEEN_FACTOR_BASE = 0.1
 
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
 type PropType = {
-  slides: number[]
+  slides: News[]
   options?: EmblaOptionsType
 }
 
@@ -39,7 +40,6 @@ export const EmblaCarousel = (props: PropType) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
-  const [activeSlides, setActiveSlides] = useState<Set<number>>(new Set())
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi)
@@ -70,7 +70,6 @@ export const EmblaCarousel = (props: PropType) => {
       const scrollProgress = emblaApi.scrollProgress()
       const slidesInView = emblaApi.slidesInView()
       const isScrollEvent = event?.type === 'scroll'
-      const newActiveSlides = new Set<number>()
 
       emblaApi.snapList().forEach((scrollSnap, snapIndex) => {
         let diffToTarget = scrollSnap - scrollProgress
@@ -101,15 +100,9 @@ export const EmblaCarousel = (props: PropType) => {
           const scale = scaleValue.toString()
           const tweenNode = tweenNodes.current[slideIndex]
           tweenNode.style.transform = `scale(${scale})`
-          
-          // Track slides with scale > 0.98
-          if (scaleValue > 0.98) {
-            newActiveSlides.add(slideIndex)
-          }
         })
       })
       
-      setActiveSlides(newActiveSlides)
     },
     []
   )
@@ -133,20 +126,33 @@ export const EmblaCarousel = (props: PropType) => {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((news, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__number">
+              <Link href={`/news/${news.id}`} className="embla__slide__number">
+                <div className={`embla__content ${index === selectedIndex ? 'embla__content__active' : 'embla__content__inactive'}`}>
+                    <span className="text-4xl font-harmony hover:text-[#fb542b] font-bold mb-2">{news.title}</span>
+                    <span className='font-harmony font-normal text-2xl text-gray-500 mb-2'>
+                      {new Date(news.updated_on).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric"})}
+                    </span>
+                    <p className="font-harmony font-normal text-2xl mb-2">{news.section1}</p>   
+                    <span className='text-2xl font-bold font-harmony underline mb-2'>Read More</span>                   
+                </div>
                 <div className='embla__slide__img'>
-                    <Image className="" src={`https://picsum.photos/640/360?v=${index}`} alt="Your alt text" width={640} height={360} />
-                </div>
-                <div className={`embla__content ${activeSlides.has(index) ? 'embla__content__active' : 'embla__content__inactive'}`}>
-                    <span className="text-[8rem] font-gilroy font-light tracking-tighter leading-36">FRONT WING {index + 1}</span>
-                    <p className="font-harmony font-normal text-4xl">The front wing becomes narrower, reducing its overall aerodynamic influence on the airflow directed toward following cars. However, the outer sections remain open for development, ensuring teams can still extract performance gains. Despite its reduced size, the front wing continues to play a decisive role in overall car balance.</p>  
-                </div>
-              </div>
+                    <Image className="" src={news.hook} alt="Your alt text" width={640} height={360} />
+                </div>                
+              </Link>
             </div>
           ))}
-        </div>
+          <div className="embla__slide">
+              <Link href="/news/" className="embla__slide__number">
+                <div className={`embla__content embla__content__active`}> 
+                    <span className='flex justify-center items-center gap-1 text-4xl font-bold font-harmony text-nowrap'>
+                      More News <MoveRight size={16}></MoveRight>
+                    </span>                   
+                </div>                               
+              </Link>
+            </div>
+          </div>
       </div>
 
       <div className="embla__controls">

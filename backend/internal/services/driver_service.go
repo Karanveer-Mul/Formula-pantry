@@ -34,10 +34,7 @@ func (s *DriverService) GetDriverByID(id uuid.UUID) (*models.Driver, error) {
 }
 
 // GetDriversBySeason retrieves all drivers for a season
-func (s *DriverService) GetDriversBySeason(season int) ([]models.Driver, error) {
-	if season < 1950 || season > 2100 {
-		return nil, errors.New("invalid season")
-	}
+func (s *DriverService) GetDriversBySeason(season int16) ([]models.Driver, error) {
 	return s.driverRepo.GetBySeason(season)
 }
 
@@ -48,4 +45,3 @@ func (s *DriverService) GetDriverWithResults(id uuid.UUID) (*models.Driver, erro
 	}
 	return s.driverRepo.GetWithResults(id)
 }
-
