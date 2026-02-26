@@ -14,8 +14,8 @@ export async function getNews(page?: number, limit?: number): Promise<News[]> {
   if (typeof page !== 'number' || page < 0) {
     page = 0;
   }
-  if (typeof limit !== 'number' || limit > 10) {
-    limit = 10;
+  if (typeof limit !== 'number' || limit > 12) {
+    limit = 12;
   }
 
   // Build the API URL with query parameter
@@ -46,7 +46,7 @@ export async function getNews(page?: number, limit?: number): Promise<News[]> {
  * @returns Promise resolving to an array of News object
  * @throws Error if the API request fails or returns an error
  */
-export async function getSessionsById(id: string): Promise<News> {
+export async function getNewsById(id: string): Promise<News> {
   // Validate id
   if (id != undefined && id !== null && id.length != 36) {
     throw new Error('Invalid news id');

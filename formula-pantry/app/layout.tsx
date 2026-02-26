@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { gilroy, harmony, novecento } from "./font";
 import "./globals.css";
-import PCNavbar from "@/app/components/layout/PCNavbar";
-import MobileNavbar from "@/app/components/layout/MobileNavbar";
 import Head from "next/head";
+import NavbarWrapper from "@/app/components/layout/NavbarWrapper";
 
 export const metadata: Metadata = {
   title: "Sector Talks",
@@ -28,8 +27,7 @@ export default function RootLayout({
       <body className={`antialiased`}>
         <div className="relative w-full min-h-screen">
           <div className='relative w-full flex flex-col lg:flex-row'>
-            <MobileNavbar />
-            <PCNavbar />
+            <NavbarWrapper />
             {children}
           </div>
         </div>

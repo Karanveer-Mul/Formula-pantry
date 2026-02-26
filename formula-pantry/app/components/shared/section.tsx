@@ -9,7 +9,7 @@ export default function SectionContainer (props: { title: React.ReactNode, scrol
             <div className="w-4/5 relative items-start flex flex-col justify-start">
               <div className="flex flex-col items-start w-full mt-8">
                 <LongCheckeredFlag />
-                <span className="text-6xl mt-2 font-harmony font-bold text-nowrap ">{title}</span>
+                <span className="text-6xl mt-2 font-harmony font-bold w-2/3">{title}</span>
               </div>     
               {children}         
             </div>

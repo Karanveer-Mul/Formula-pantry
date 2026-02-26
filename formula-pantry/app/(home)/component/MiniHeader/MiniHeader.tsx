@@ -2,11 +2,7 @@ import MiniHeaderCarousel from "./MiniHeaderCarousel";
 import { getLatestNewsTitles, getUpcomingSessionTitles } from "../../api/services";
 import { UpcomingSessionTitle, LatestNewsTitle } from "../../api/types";
 import Link from "next/link";
-
-
-const ConvertUtcTime = (time: string) => {
-    return new Date(time).toLocaleDateString("en-US", { month: "short", day: "numeric"})
-}
+import { convertUtcTimeToMonthDate, truncateContent } from "@/app/components/shared/helper";
 
 export default async function MiniHeader() {
 
@@ -37,9 +33,9 @@ export default async function MiniHeader() {
                     {latestNewsTitles.map((news) => (
                         <div className="flex justify-between items-center font-harmony font-normal  text-2xl " key={news.id}>
                             <Link className="hover:text-[#fb542b]" target='_blank' href={`/news/${news.id}`}>
-                                {news.title.length > 40 ? news.title.substring(0, 40) + "..." : news.title}
+                                {truncateContent(news.title)}
                             </Link>
-                            <span className="text-nowrap">{ConvertUtcTime(news.updated_on)}</span>
+                            <span className="text-nowrap">{convertUtcTimeToMonthDate(news.updated_on)}</span>
                         </div>
                     ))}
                 </div>

@@ -21,7 +21,7 @@ export default function Hero() {
                 <div className="text-3xl font-gilroy font-light tracking-tight text-gray-400">
                   Version 0.0.1
                 </div>
-                <Link href="/news" className="">
+                <Link href="/sessions" className="">
                   <div className="text-nowrap w-fit mt-10 z-10 bg-white rounded-full outline-2 outline-white border border-gray-300 px-16 py-4 font-harmony text-2xl font-bold text-black shadow-sm hover:border-gray-500">
                     View Events
                   </div>

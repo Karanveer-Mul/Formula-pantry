@@ -72,8 +72,11 @@ body, html {
     transition-property: transform,opacity,colors;
     font-family: var(--font-harmony), sans-serif;
   }
-}
 
+  .news_section p {
+    @apply mt-8;
+  }
+}
 
 @layer components {
   .hollow-text {
