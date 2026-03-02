@@ -9,7 +9,6 @@ import (
 // Driver represents a Formula 1 driver
 type Driver struct {
 	ID          uuid.UUID `gorm:"type:uuid;primary_key;default:gen_random_uuid()" json:"id"`
-	DriverID    string    `gorm:"type:varchar(50);uniqueIndex" json:"driver_id"` // For F1 API compatibility
 	FirstName   string    `gorm:"type:varchar(50);not null" json:"first_name"`
 	LastName    string    `gorm:"type:varchar(50);not null" json:"last_name"`
 	Nationality string    `gorm:"type:varchar(50)" json:"nationality"`

@@ -34,6 +34,18 @@ func (h *StandingHandler) GetDriverStandings(c *gin.Context) {
 		return
 	}
 
+	limitStr := c.Query("limit")
+	limitValue := 22
+	if limitStr != "" {
+		limitValue, err = strconv.Atoi(limitStr)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid limit parameter"})
+			return
+		}
+	}
+
+	limit := &limitValue
+
 	var roundNumber *int
 	roundStr := c.Query("round")
 	if roundStr != "" {
@@ -45,7 +57,7 @@ func (h *StandingHandler) GetDriverStandings(c *gin.Context) {
 		roundNumber = &round
 	}
 
-	standings, err := h.standingService.GetDriverStandings(season, roundNumber)
+	standings, err := h.standingService.GetDriverStandings(season, roundNumber, limit)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -70,6 +82,18 @@ func (h *StandingHandler) GetConstructorStandings(c *gin.Context) {
 		return
 	}
 
+	limitStr := c.Query("limit")
+	limitValue := 11
+	if limitStr != "" {
+		limitValue, err = strconv.Atoi(limitStr)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid limit parameter"})
+			return
+		}
+	}
+
+	limit := &limitValue
+
 	var roundNumber *int
 	roundStr := c.Query("round")
 	if roundStr != "" {
@@ -81,7 +105,7 @@ func (h *StandingHandler) GetConstructorStandings(c *gin.Context) {
 		roundNumber = &round
 	}
 
-	standings, err := h.standingService.GetConstructorStandings(season, roundNumber)
+	standings, err := h.standingService.GetConstructorStandings(season, roundNumber, limit)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -91,4 +115,3 @@ func (h *StandingHandler) GetConstructorStandings(c *gin.Context) {
 		"data": standings,
 	})
 }
-

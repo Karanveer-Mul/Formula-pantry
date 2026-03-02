@@ -1,6 +1,5 @@
 import SectionContainer from "../components/shared/section";
 import SectionSubItem from "../components/shared/sectionSubItem";
-import NewsCard from "./components/newsCard";
 import NewsList from "./components/NewsList";
 import { getNews } from "./api/services";
 import type { News } from "./api/types";

@@ -76,6 +76,11 @@ body, html {
   .news_section p {
     @apply mt-8;
   }
+  
+  .driver-face-card-small {
+    @apply w-12 h-12 rounded-full overflow-hidden;
+    @apply flex items-baseline justify-center mr-4;
+  }
 }
 
 @layer components {

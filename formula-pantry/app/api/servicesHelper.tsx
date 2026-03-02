@@ -7,7 +7,7 @@ import { ArrayResponse, Response, ApiError } from './types';
  * @returns Promise resolving to an array of Type objects
  * @throws Error if the API request fails or returns an error
  */
-export async function getArrayResponse<T>(url: string): Promise<T[]> {
+export async function getArrayResponse<T>(url: string, revalidate: number = 0): Promise<T[]> {
 
   try {
     const response = await fetch(url, {
@@ -15,6 +15,7 @@ export async function getArrayResponse<T>(url: string): Promise<T[]> {
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { revalidate: revalidate },
     });
 
     // Check if response is ok (status 200-299)
@@ -61,7 +62,7 @@ export async function getArrayResponse<T>(url: string): Promise<T[]> {
  * @returns Promise resolving to an array of Type objects
  * @throws Error if the API request fails or returns an error
  */
-export async function getResponse<T>(url: string): Promise<T> {
+export async function getResponse<T>(url: string, revalidate: number = 3600): Promise<T> {
 
   try {
     const response = await fetch(url, {
@@ -69,6 +70,7 @@ export async function getResponse<T>(url: string): Promise<T> {
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { revalidate: revalidate },
     });
 
     // Check if response is ok (status 200-299)

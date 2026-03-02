@@ -26,7 +26,7 @@ export async function getSessionsBySeason(season: number): Promise<Session[]> {
     season = currentYear;
   }
   if (season < 1950 || season > currentYear) {
-    throw new Error(`Invalid season: ${season}. Season must be between 1950 and 2100.`);
+    throw new Error(`Invalid season: ${season}. Season must be between 1950 and ${currentYear}.`);
   }
 
   // Build the API URL with query parameter
