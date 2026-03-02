@@ -1,10 +1,13 @@
 export interface Driver {
 	id: string; // UUID
-	firstName: string;
-	lastName: string;
+	first_name: string;
+	last_name: string;
 	nationality: string;
 	code: string; // HAM, VER, LEC, etc.
 	team_id: string; // UUID
+	team_name: string;
+	team_color: string; // Hex color code
+	constructor_id: string; // UUID
 	driver_number: number;
 
 	// Current Season

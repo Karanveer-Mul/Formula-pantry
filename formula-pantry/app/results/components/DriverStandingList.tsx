@@ -20,7 +20,7 @@ export default function DriverStandingList(props: { driverStandings: DriverStand
                 <div className="flex items-center justify-start w-1/2">
                   <span className="w-1/6">{driver.position}</span>
                   <Link className="flex items-center hover:text-[#fb542b]" href={`/drivers/${driver.driver_id}`}> 
-                    <span className={`driver-face-card-small`} style={{
+                    <span className="driver-face-card-small" style={{
                       background: `#${driver.team_color}`
                     }}> 
                       <Image className="" loading="lazy" src={`/teams/${year}/${driver.constructor_id}/${driver.first_name}${driver.last_name}_small.webp`} width={30} height={30}  alt={`${driver.last_name} face card`} />

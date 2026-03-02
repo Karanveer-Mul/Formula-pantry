@@ -11,11 +11,9 @@ export default async function Standings(props: {constructorLimit?: number, drive
 
   let error: string | null = null;
 
-  const currentYear = new Date().getFullYear();
-
   const constructorLimit = props.constructorLimit ?? 10;
   const driverLimit = props.driverLimit ?? 10;
-  const year = props.year ?? currentYear;
+  const year = props.year ?? new Date().getFullYear();
   const scrollable = props.scrollable ?? false;
 
   try {

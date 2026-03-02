@@ -13,8 +13,8 @@ type DriverRepository interface {
 	GetAll() ([]models.Driver, error)
 	GetByID(id uuid.UUID) (*models.Driver, error)
 	GetByDriverID(driverID string) (*models.Driver, error)
-	GetBySeason(season int16) ([]models.Driver, error)
-	GetByTeamID(teamID uuid.UUID) ([]models.Driver, error)
+	GetBySeason(season int16) ([]models.PopulatedDriver, error)
+	GetByTeamID(teamID uuid.UUID) ([]models.PopulatedDriver, error)
 	Create(driver *models.Driver) error
 	Update(driver *models.Driver) error
 	Delete(id uuid.UUID) error
@@ -56,15 +56,42 @@ func (r *driverRepository) GetByDriverID(driverID string) (*models.Driver, error
 	return &driver, nil
 }
 
-func (r *driverRepository) GetBySeason(season int16) ([]models.Driver, error) {
-	var drivers []models.Driver
-	err := r.db.Where("season = ?", season).Preload("Team").Order("season_position ASC").Find(&drivers).Error
+func (r *driverRepository) GetBySeason(season int16) ([]models.PopulatedDriver, error) {
+	var drivers []models.PopulatedDriver
+
+	err := r.db.
+		Model(&models.Driver{}).
+		Select(`
+			drivers.*,	
+			teams.team_color,
+			teams.name as team_name,
+			teams.constructor_id
+	
+		`).
+		Joins("LEFT JOIN teams ON teams.id = drivers.team_id").
+		Where("drivers.season = ?", season).
+		Order("drivers.season_position ASC").
+		Scan(&drivers).Error
+
 	return drivers, err
 }
 
-func (r *driverRepository) GetByTeamID(teamID uuid.UUID) ([]models.Driver, error) {
-	var drivers []models.Driver
-	err := r.db.Where("team_id = ?", teamID).Preload("Team").Find(&drivers).Error
+func (r *driverRepository) GetByTeamID(teamID uuid.UUID) ([]models.PopulatedDriver, error) {
+	var drivers []models.PopulatedDriver
+
+	err := r.db.
+		Model(&models.Driver{}).
+		Select(`
+			drivers.*,	
+			teams.team_color,
+			teams.team_name,
+			teams.constructor_id,
+	
+		`).
+		Joins("LEFT join teams on teams.id = drivers.team_id").
+		Where("drivers.team_id = ?", teamID).
+		Scan(&drivers).Error
+
 	return drivers, err
 }
 

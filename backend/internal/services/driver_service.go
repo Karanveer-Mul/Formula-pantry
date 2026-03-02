@@ -34,7 +34,7 @@ func (s *DriverService) GetDriverByID(id uuid.UUID) (*models.Driver, error) {
 }
 
 // GetDriversBySeason retrieves all drivers for a season
-func (s *DriverService) GetDriversBySeason(season int16) ([]models.Driver, error) {
+func (s *DriverService) GetDriversBySeason(season int16) ([]models.PopulatedDriver, error) {
 	return s.driverRepo.GetBySeason(season)
 }
 
