@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { Driver } from "../api/types";
+import Link from "next/link";
 
 export default function DriverCard(props: { driver: Driver }) {
   const { driver } = props;
@@ -101,10 +102,10 @@ export default function DriverCard(props: { driver: Driver }) {
             />
           </div>
         </div>
-        <span className="absolute bottom-5 left-5 px-4 py-2 text-6xl font-harmony font-medium rhombus text-white">
+        <span className="absolute bottom-5 left-5 px-4 py-2 text-6xl font-harmony font-medium hexagon text-white">
             {driver.season_points}
         </span>
-        <span className="absolute bottom-5 right-5 px-4 py-2 text-6xl font-harmony font-medium rhombus text-white">
+        <span className="absolute bottom-5 right-5 px-4 py-2 text-6xl font-harmony font-medium hexagon text-white">
             {driver.season_points}
         </span>
       </div>

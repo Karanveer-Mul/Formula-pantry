@@ -8,9 +8,6 @@ export default async function Drivers() {
   let drivers: Driver[] = [];
   let error: string | null = null;
 
-  let newsPage = 0;
-  let newsLimit = 10;
-
   try {
     drivers = await getDrivers();
   } catch (err) {

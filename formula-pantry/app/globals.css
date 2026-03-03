@@ -146,7 +146,7 @@ body, html {
     letter-spacing: -0.625rem;
   }
 
-  .rhombus {
+  .hexagon {
     background: linear-gradient(to bottom, #4a74a5, #243b55);
     clip-path: polygon(
       50% 0%, 

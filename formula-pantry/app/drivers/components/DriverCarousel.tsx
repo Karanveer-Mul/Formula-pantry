@@ -71,7 +71,7 @@ export const EmblaCarousel = (props: PropType) => {
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector(".embla__slide__number") as HTMLElement;
+      return slideNode.querySelector(".driver_embla__slide__number") as HTMLElement;
     });
   }, []);
 
@@ -140,24 +140,110 @@ export const EmblaCarousel = (props: PropType) => {
   }, [emblaApi, tweenScale]);
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
+    <div className="driver_embla">
+      <div className="driver_embla__viewport" ref={emblaRef}>
+        <div className="driver_embla__container">
           {slides.map((driver, index) => (
-            <div className="embla__slide" key={index}>
-              <Link
-                href={`/driver/${driver.id}`}
-                className="embla__slide__number"
-              >
+            <div className="driver_embla__slide" key={index}>
+              <div className="driver_embla__slide__number">
                 <div
-                  className={`embla__content ${index === selectedIndex ? "embla__content__active" : "embla__content__inactive"}`}
+                  className={`driver_embla__content ${index === selectedIndex ? "embla__content__active" : "embla__content__inactive"}`}
                 >
-                  <DriverCard driver={driver} />
+                  <div className="absolute top-10 left-0 lg:-left-50 flex flex-col items-start justify-center">
+                    <div className="flex items-center justify-start">
+                      <span
+                        className={`driver-face-card-small`}
+                        style={{
+                          background: `#${driver.team_color}`,
+                        }}
+                      >
+                        <Image
+                          className=""
+                          loading="lazy"
+                          src={`/teams/${year}/${driver.constructor_id}/logo.webp`}
+                          width={30}
+                          height={30}
+                          alt={`${driver.team_name} logo`}
+                        />
+                      </span>
+                      <span className="text-6xl font-novecento font-bold text-nowrap">{`[  ${driver.last_name}  ]`}</span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8  ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Team
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.team_name}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Nationality
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.nationality}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Code
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.code}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Season Position
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.season_position}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Season Points
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.season_points}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Season Winds
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.season_grand_prix_wins}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Season Podiums
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.season_grand_prix_podiums}
+                      </span>
+                    </div>
+                    <div className="hidden md:flex items-center justify-start mt-8 ">
+                      <span className="text-2xl text-gray-500 font-normal mr-2">
+                        Season Poles
+                      </span>
+                      <span className="text-2xl text-black font-bold">
+                        {driver.season_grand_prix_poles}
+                      </span>
+                    </div>
+                  </div>
+                  <Link href={`/driver/${driver.id}`}>
+                    <DriverCard driver={driver} />
+                  </Link>
                 </div>
-                <div className="embla__slide__img driver-face-card-md" style={{
-                      background: `#${driver.team_color}`,
-                      borderColor: `#${driver.team_color}`,
-                    }}>
+                <div
+                  className="driver_embla__slide__img driver-face-card-md"
+                  style={{
+                    background: `#${driver.team_color}`,
+                    borderColor: `#${driver.team_color}`,
+                  }}
+                >
                   <Image
                     className=""
                     src={`/teams/${year}/${driver.constructor_id}/${driver.first_name}${driver.last_name}_small.webp`}
@@ -166,7 +252,7 @@ export const EmblaCarousel = (props: PropType) => {
                     height={40}
                   />
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

@@ -8,8 +8,9 @@ export const Home = () => {
     <div className="w-full overflow-hidden">
       <Hero />
       <Standings />
-      <Regulations />
       <LatestNewsSection />
+      <Regulations />
+      
     </div>
   );
 };
