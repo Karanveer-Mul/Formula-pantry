@@ -20,6 +20,7 @@ type SessionRepository interface {
 	Delete(id uuid.UUID) error
 	GetWithResults(id uuid.UUID) (*models.Session, error)
 	GetUpcomingSessionTitles(limit int) ([]models.UpcomingSessionTitle, error)
+	GetUpcomingSession() (*models.Session, error)
 }
 
 type sessionRepository struct {
@@ -88,4 +89,11 @@ func (r *sessionRepository) GetUpcomingSessionTitles(limit int) ([]models.Upcomi
 	var sessions []models.UpcomingSessionTitle
 	err := r.db.Select("id, race_name, session_one_date_time, session_five_date_time").Where("session_one_date_time > ?", time.Now()).Order("session_one_date_time ASC").Limit(limit).Find(&sessions).Error
 	return sessions, err
+}
+
+func (r *sessionRepository) GetUpcomingSession() (*models.Session, error) {
+	var session models.Session
+
+	err := r.db.Where("is_completed = false AND is_cancelled = false").First(&session).Error
+	return &session, err
 }

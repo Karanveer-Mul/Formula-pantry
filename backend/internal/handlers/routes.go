@@ -43,6 +43,7 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 			sessions.GET("/:id", sessionHandler.GetSessionByID)
 			sessions.GET("/:id/results", sessionHandler.GetSessionResults)
 			sessions.GET("/upcomingSessionTitles", sessionHandler.GetUpcomingSessionTitles)
+			sessions.GET("/upcoming", sessionHandler.GetUpcomingSession)
 		}
 
 		// Drivers routes

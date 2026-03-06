@@ -49,3 +49,7 @@ func (s *SessionService) GetSessionWithResults(id uuid.UUID) (*models.Session, e
 func (s *SessionService) GetUpcomingSessionTitles(limit int) ([]models.UpcomingSessionTitle, error) {
 	return s.sessionRepo.GetUpcomingSessionTitles(limit)
 }
+
+func (s *SessionService) GetUpcomingSession() (*models.Session, error) {
+	return s.sessionRepo.GetUpcomingSession()
+}

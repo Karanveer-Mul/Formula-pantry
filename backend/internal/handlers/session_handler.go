@@ -127,3 +127,18 @@ func (h *SessionHandler) GetUpcomingSessionTitles(c *gin.Context) {
 		"data": sessions,
 	})
 }
+
+func (h *SessionHandler) GetUpcomingSession(c *gin.Context) {
+
+	session, err := h.sessionService.GetUpcomingSession()
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve upcoming session details"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": session,
+	})
+
+}

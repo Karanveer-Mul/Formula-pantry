@@ -71,3 +71,24 @@ export async function getSessionsById(id: string): Promise<Session> {
     );
   }
 }
+
+export async function getUpcomingSession(): Promise<Session> {
+  // Build the API URL with query parameter
+  const url = `${buildApiUrl('/api/v1/sessions')}/upcoming`;
+
+  try {
+    return await getResponse<Session>(url);
+  } catch (error) {
+    // Re-throw known errors
+    if (error instanceof Error) {
+      throw error;
+    }
+
+    // Handle network errors and other unknown errors
+    throw new Error(
+      `Failed to fetch upcoming session: ${error instanceof Error ? error.message : 'Unknown error'}`
+    );
+  }
+}
+
+  
