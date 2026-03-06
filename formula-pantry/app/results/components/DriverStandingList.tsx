@@ -19,7 +19,7 @@ export default function DriverStandingList(props: { driverStandings: DriverStand
               <div key={driver.id} className={`${index !== 0 && "border-t"} py-7 border-gray-500 flex justify-between `}>
                 <div className="flex items-center justify-start w-1/2">
                   <span className="w-1/6">{driver.position}</span>
-                  <Link className="flex items-center hover:text-[#fb542b]" href={`/drivers/${driver.driver_id}`}> 
+                  <Link className="flex items-center orange-link" href={`/drivers/${driver.driver_id}`}> 
                     <span className="driver-face-card-small" style={{
                       background: `#${driver.team_color}`
                     }}> 

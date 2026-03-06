@@ -18,7 +18,7 @@ export default async function SessionsPage() {
 
   return (
     <div className="w-full overflow-hidden">
-      <SectionContainer title={`${currentYear} Session Calendar`}>
+      <SectionContainer title={`${currentYear} SESSION CALENDAR`}>
         <SectionSubItem>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24 w-full">
 

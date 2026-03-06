@@ -94,6 +94,6 @@ func (r *sessionRepository) GetUpcomingSessionTitles(limit int) ([]models.Upcomi
 func (r *sessionRepository) GetUpcomingSession() (*models.Session, error) {
 	var session models.Session
 
-	err := r.db.Where("is_completed = false AND is_cancelled = false").First(&session).Error
+	err := r.db.Where("is_completed = false AND is_cancelled = false").Order("round_number ASC").First(&session).Error
 	return &session, err
 }

@@ -3,15 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import UpcomingSession from "./UpcomingSession/UpcomingSession";
 import { LongCheckeredFlag } from "@/app/components/shared/LongCheckeredFlag";
-import LatestNewsSection from "./LatestNews/LatestNewsSection";
+import NewsSideBar from "./NewsSideBar/NewsSideBar";
 
 export default function Hero() {
   return (
-    <div className="scroll-mt-36 lg:scroll-m-0">
+    <div className="scroll-mt-36 lg:scroll-m-0 ">
         <div className="relative w-full h-screen box-border overflow-hidden">
           <div className="flex w-full h-full justify-center items-center">
             <div className="w-full lg:w-4/5 relative justify-center items-center lg:items-start flex flex-col text-center lg:text-left">
-              <div className="z-10 flex items-start justify-between">
+              <div className="z-10 w-full flex items-start justify-center lg:justify-between">
                 <div className="z-10 flex flex-col items-center lg:items-start">
                   <Image loading="lazy" src="/logo.svg" alt="Sector Talks Logo" width={270} height={135} />  
                   <LongCheckeredFlag />
@@ -28,7 +28,7 @@ export default function Hero() {
                   </Link>
                     <UpcomingSession />
                 </div> 
-                <LatestNewsSection />
+                <NewsSideBar />
               </div>             
               
             </div>

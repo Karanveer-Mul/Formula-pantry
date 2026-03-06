@@ -20,6 +20,7 @@ type ConstructorStandingRepository interface {
 	GetBySeason(season int, limit int) ([]models.PopulatedConstructorStanding, error)
 	GetBySeasonAndRound(season int, roundNumber int, limit int) ([]models.PopulatedConstructorStanding, error)
 	GetCurrentStandings(season int, limit int) ([]models.PopulatedConstructorStanding, error)
+	GetConstructorStandingWithDrivers(teamId string) ([]models.PopulatedConstructorStandingWithDrivers, error)
 	Create(standing *models.ConstructorStanding) error
 }
 
@@ -215,6 +216,42 @@ func (r *constructorStandingRepository) GetCurrentStandings(season int, limit in
 		Where("constructor_standings.season = ?", season).
 		Order("constructor_standings.round_number DESC, constructor_standings.position ASC").
 		Limit(limit).
+		Scan(&standings).Error
+
+	return standings, err
+}
+
+func (r *constructorStandingRepository) GetConstructorStandingWithDrivers(teamId string) ([]models.PopulatedConstructorStandingWithDrivers, error) {
+	var standings []models.PopulatedConstructorStandingWithDrivers
+
+	err := r.db.
+		Table("driver_standings ds").
+		Select(`
+			cs.id,
+			d.team_id,
+			t.name AS team_name,
+			t.constructor_id as constructor_id,
+			t.team_color,
+			cs.season,
+			cs.round_number,
+
+			cs.position,
+			cs.points,
+			cs.wins,
+
+			ds.driver_id,
+			d.first_name as driver_first_name,
+			d.last_name as driver_last_name,
+			d.driver_number,
+		    ds.points as driver_points,
+			ds.wins as driver_wins			
+		`).
+		Joins("LEFT JOIN drivers d ON d.id = ds.driver_id").
+		Joins("LEFT JOIN teams t ON t.id = d.team_id").
+		Joins("LEFT JOIN constructor_standings cs ON cs.team_id = t.id").
+		Where("t.id = ?", teamId).
+		Order("ds.round_number DESC").
+		Limit(2).
 		Scan(&standings).Error
 
 	return standings, err

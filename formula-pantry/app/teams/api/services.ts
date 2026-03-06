@@ -1,6 +1,6 @@
 import { buildApiUrl } from '@/app/api/config';
 import { getArrayResponse, getResponse } from '@/app/api/servicesHelper';
-import type { Team } from './types';
+import type { Team, ConstructorStandingWithDriver } from './types';
 
 /**
  * Fetches uppcoming session titles and latest news titles from the backend API
@@ -73,3 +73,33 @@ export async function getTeamById(id: string): Promise<Team> {
 }
 
 
+/**
+ * Fetches uppcoming session titles and latest news titles from the backend API
+ * 
+ * @param id - The id of team to fetch
+ * @returns Promise resolving to a Team object
+ * @throws Error if the API request fails or returns an error
+ */
+export async function getTeamWithDrivers(id: string): Promise<ConstructorStandingWithDriver[]> {
+  // Validate id
+  if (id != undefined && id !== null && id.length != 36) {
+    throw new Error('Invalid team id');
+  }
+
+  // Build the API URL with query parameter
+  const url = `${buildApiUrl('/api/v1/standings/constructors')}/${id}`;
+
+  try {
+    return await getArrayResponse<ConstructorStandingWithDriver>(url);
+  } catch (error) {
+    // Re-throw known errors
+    if (error instanceof Error) {
+      throw error;
+    }
+    
+    // Handle network errors and other unknown errors
+    throw new Error(
+      `Failed to fetch session: ${error instanceof Error ? error.message : 'Unknown error'}`
+    );
+  }
+}

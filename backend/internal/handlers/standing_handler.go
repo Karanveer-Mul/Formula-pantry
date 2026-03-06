@@ -115,3 +115,22 @@ func (h *StandingHandler) GetConstructorStandings(c *gin.Context) {
 		"data": standings,
 	})
 }
+
+// GetPopulatedConstructorStandingWithDrivers handles GET /api/v1/standings/constructors/:id
+func (h *StandingHandler) GetConstructorStandingWithDrivers(c *gin.Context) {
+	idStr := c.Param("id")
+	if idStr == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Season parameter is required"})
+		return
+	}
+
+	standings, err := h.standingService.GetConstructorStandingWithDrivers(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": standings,
+	})
+}

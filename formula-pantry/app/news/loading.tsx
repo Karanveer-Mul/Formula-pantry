@@ -6,7 +6,7 @@ export default function LoadingNews() {
 
   return (
     <div className="w-full overflow-hidden">
-      <SectionContainer title="News">
+      <SectionContainer title="NEWS">
         <SectionSubItem>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24 w-full">
               {[...Array(12)].map((_, idx) => (

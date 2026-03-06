@@ -54,7 +54,7 @@ export default async function SessionPage({ params }: Props) {
 
   return (
     <div className="w-full overflow-hidden">
-      <SectionContainer title={`${session.race_name}`}>
+      <SectionContainer title={`${session.race_name.toUpperCase()} ${session.season}`}>
         <div className="w-full text-gray-500 text-nowrap font-harmony font-medium text-2xl">
           {session.country}, {session.city}
         </div>

@@ -21,7 +21,7 @@ export default function ConstructorStandingList(props: { constructorStandings: C
           <div key={team.id} className={`${index !== 0 && "border-t"} py-7 border-gray-500 flex justify-between `}>
             <div className="flex items-center justify-start w-1/2">
               <span className="w-1/6">{team.position}</span>
-              <Link className="flex items-center hover:text-[#fb542b]" href={`/teams/${team.team_id}`}>
+              <Link className="flex items-center orange-link" href={`/teams/${team.team_id}`}>
                 <span className={`driver-face-card-small`} style={{
                   background: `#${team.team_color}`
                 }}>

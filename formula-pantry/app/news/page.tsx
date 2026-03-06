@@ -29,7 +29,7 @@ export default async function SessionsPage() {
 
   return (
     <div className="w-full overflow-hidden">
-      <SectionContainer title={`News`}>
+      <SectionContainer title="NEWS">
         <SectionSubItem>
           {error ? (
             <div className="mt-4 text-lg text-red-600">Error: {error}</div>

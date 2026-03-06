@@ -66,3 +66,7 @@ func (s *StandingService) GetConstructorStandings(season int, roundNumber *int, 
 
 	return s.constructorStandingRepo.GetCurrentStandings(season, *limit)
 }
+
+func (s *StandingService) GetConstructorStandingWithDrivers(teamId string) ([]models.PopulatedConstructorStandingWithDrivers, error) {
+	return s.constructorStandingRepo.GetConstructorStandingWithDrivers(teamId)
+}

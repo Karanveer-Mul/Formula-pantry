@@ -67,6 +67,7 @@ func SetupRoutes(router *gin.Engine, cfg *config.Config) {
 		{
 			standings.GET("/drivers", standingHandler.GetDriverStandings)
 			standings.GET("/constructors", standingHandler.GetConstructorStandings)
+			standings.GET("/constructors/:id", standingHandler.GetConstructorStandingWithDrivers)
 		}
 
 		// News routes

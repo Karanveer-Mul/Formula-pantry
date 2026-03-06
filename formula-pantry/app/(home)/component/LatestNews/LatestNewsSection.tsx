@@ -20,7 +20,7 @@ export default async function LatestNewsSection() {
   }
 
   return (
-    <SectionContainer title="News" scrollable={false}>
+    <SectionContainer title="NEWS" scrollable={false}>
       <SectionSubItem>
         <LatestNewsCarousel newsArticles={news} />
       </SectionSubItem>

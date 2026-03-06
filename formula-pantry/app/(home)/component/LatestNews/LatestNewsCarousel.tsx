@@ -133,7 +133,7 @@ export const EmblaCarousel = (props: PropType) => {
             <div className="embla__slide" key={index}>
               <Link href={`/news/${news.id}`} className="embla__slide__number">
                 <div className={`embla__content ${index === selectedIndex ? 'embla__content__active' : 'embla__content__inactive'}`}>
-                    <span className="text-4xl font-harmony hover:text-[#fb542b] font-bold mb-2">{news.title}</span>
+                    <span className="text-4xl font-harmony orange-link font-bold mb-2">{news.title}</span>
                     <span className='font-harmony font-normal text-2xl text-gray-500 mb-2'>
                       {new Date(news.updated_on).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric"})}
                     </span>

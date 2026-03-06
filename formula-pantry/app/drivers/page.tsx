@@ -16,7 +16,7 @@ export default async function Drivers() {
 
   return (
     <div className="w-full overflow-hidden">
-      <SectionContainer title="Drivers" scrollable={false}>
+      <SectionContainer title="DRIVERS" scrollable={false}>
         <SectionSubItem>
           <DriversSection drivers={drivers} />
         </SectionSubItem>

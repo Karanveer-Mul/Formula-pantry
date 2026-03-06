@@ -25,7 +25,7 @@ export default async function Standings(props: {constructorLimit?: number, drive
 
   return (
       <SectionContainer 
-        title="Standings"
+        title="STANDINGS"
         bg="bg-dark-main-gradient"
         color="text-white"
         scrollable={scrollable}
